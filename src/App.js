@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { StrictMode } from "react";
+import "./App.css";
+// Компонент не может изменяться
+
+function WhoAmI({ name, surname, link }) {
+  return (
+    <div>
+      <h1>
+        My name is {name}, surname is {surname}
+      </h1>
+      <a href={link}>my vk</a>
+    </div>
+  );
+}
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <WhoAmI name="Paul" surname="Grin" link="vk.com" />
+      <WhoAmI name="John" surname="Grin" link="vk.com" />
     </div>
   );
 }
