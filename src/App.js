@@ -1,6 +1,26 @@
 import React, { StrictMode } from "react";
+import styled from "styled-components";
 import "./App.css";
 // Компонент не может изменяться
+
+export const EmpItem = styled.div`
+  padding: 20px;
+  border-radius: 5px;
+  a {
+    color: black;
+  }
+`;
+
+const Header = styled.h2`
+  font-size: 22px;
+`;
+
+export const Button = styled.button`
+  display: block;
+  padding: 5px 15px;
+  background-color: gold;
+  border: 1px solid yellow;
+`;
 
 class WhoAmI extends React.Component {
   constructor(props) {
@@ -30,12 +50,12 @@ class WhoAmI extends React.Component {
     const { position, years } = this.state;
 
     return (
-      <div>
-        <h1>
+      <EmpItem>
+        <Header>
           My name is {name}, surname is {surname}, age - {years}, position -{" "}
           {position}
-        </h1>
-        <button onClick={this.nextYear}>+++</button>
+        </Header>
+        <Button onClick={this.nextYear}>+++</Button>
         <a href={link}>my vk</a>
         <form>
           <span>Введите должность:</span>
@@ -44,17 +64,22 @@ class WhoAmI extends React.Component {
             onChange={(e) => this.commitInputChanges(e, "some color")}
           />
         </form>
-      </div>
+      </EmpItem>
     );
   }
 }
 
+const Wrapper = styled.div`
+  width: 600px;
+  margin: 80px auto 0 80px;
+`;
+
 function App() {
   return (
-    <div className="App">
+    <Wrapper>
       <WhoAmI name="Paul" surname="Grin" link="vk.com" />
       <WhoAmI name="John" surname="Grin" link="vk.com" />
-    </div>
+    </Wrapper>
   );
 }
 
