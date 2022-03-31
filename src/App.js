@@ -1,4 +1,5 @@
-import React, { StrictMode } from "react";
+import React, { StrictMode, Component } from "react";
+import { Children } from "react";
 import styled from "styled-components";
 import "./App.css";
 // Компонент не может изменяться
@@ -74,9 +75,25 @@ const Wrapper = styled.div`
   margin: 80px auto 0 80px;
 `;
 
+const DynamicGreeting = (props) => {
+  return (
+    <div className={"mb-3 p-3 border border-" + props.color}>
+      {React.Children.map(props.children, (child) => {
+        return React.cloneElement(child, {
+          className: "shadow p-4 m-3 border rounded",
+        });
+      })}
+    </div>
+  );
+};
+
 function App() {
   return (
     <Wrapper>
+      <DynamicGreeting color={"primary"}>
+        <h2>It was hard</h2>
+        <h3>Really</h3>
+      </DynamicGreeting>
       <WhoAmI name="Paul" surname="Grin" link="vk.com" />
       <WhoAmI name="John" surname="Grin" link="vk.com" />
     </Wrapper>
